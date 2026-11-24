@@ -1,6 +1,6 @@
 # Polyguard — Polyglot Detection & Isolated CDR Engine
 
-`Polyguard` is a high-performance security engine and CLI tool that strictly parses binary file structures (**JPEG, PNG, ZIP/ZIP64, PDF**), partitions every byte from `0x00` to `EOF` into a structural `ByteMap`, detects polyglot payloads and sequential Least Significant Bit (LSB) steganography with near-zero false positives, and neutralizes threats via OS-isolated Content Disarm & Reconstruction (CDR).
+`polyguard` is a security engine and CLI tool that strictly parses binary file structures (**JPEG, PNG, ZIP, PDF**), partitions every byte from `0x00` to `EOF` into a structural `ByteMap`, detects polyglot payloads and sequential Least Significant Bit (LSB) steganography, and neutralizes threats via OS-isolated Content Disarm & Reconstruction (CDR).
 
 ---
 
@@ -35,7 +35,7 @@ Requires **Rust 1.85+** (recommended **1.88+**) for `edition = "2024"`, `lopdf =
 
 ```bash
 git clone https://github.com/Security-Design-Comfort/Polyguard.git
-cd Polyguard
+cd polyguard
 
 # Standard portable release build (opt-level = 3, fat LTO, single codegen unit)
 cargo build --release
