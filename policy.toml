@@ -1,0 +1,37 @@
+# Default Polyguard Security & CDR Policy
+# Strictness modes: "strict", "balanced", "permissive"
+strictness = "balanced"
+
+# Stage 1: Ingestion & DoS Guardrails
+max_file_size_bytes = 104857600        # 100 MiB
+allow_mmap = true                      # Auto-falls back to heap I/O on NFS/SMB/FUSE mounts
+mmap_threshold_bytes = 65536           # 64 KiB (zero-copy mmap above this threshold)
+max_image_width = 16384                # Prevent pixel flood
+max_image_height = 16384               # Prevent pixel flood
+max_image_pixels = 100000000           # 100 megapixels ceiling
+max_decode_memory_bytes = 268435456    # 256 MiB decode arena cap
+
+# ZIP Bomb & Archive Safety Limits
+max_zip_entries = 10000
+max_zip_uncompressed_bytes = 536870912 # 512 MiB total extracted ceiling
+max_zip_compression_ratio = 100.0      # Flag/block compression ratio > 100:1
+
+# Stage 3: Heuristic & Steganalysis Thresholds
+max_metadata_region_bytes = 65536      # 64 KiB max normal metadata block
+enable_lsb_detection = true            # Chi-Square Pair-of-Values LSB steganalysis on PNG
+lsb_chi_square_threshold = 0.99        # PoV probability threshold in (0.0, 1.0]
+
+# Stage 5: CDR & Isolation Settings
+jpeg_reencode_quality = 92             # 1..=100
+strip_lsb_on_sanitize = true           # Zero RGB bit 0 during image CDR to destroy LSB payloads
+# pdf_fallback_tool = "qpdf"           # Optional isolated external subprocess rebuilder when lopdf fails
+enable_process_isolation = true        # Spawn isolated worker subprocess for CDR
+worker_timeout_ms = 15000              # 15 seconds wall-clock limit per file
+worker_memory_limit_bytes = 536870912  # 512 MiB cap (Unix rlimit / Windows Job Object)
+
+[whitelist]
+allow_ooxml = true
+allow_standard_icc_profile = true
+allow_pdf_incremental_updates = false
+allow_pdf_embedded_files = false
+allowed_png_ancillary_chunks = ["sRGB", "gAMA", "cHRM", "pHYs", "iCCP"]
