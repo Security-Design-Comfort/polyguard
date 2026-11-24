@@ -1,4 +1,4 @@
-# Polyguard — Polyglot Detection, LSB Steganalysis & Isolated CDR Engine
+# Polyguard — Polyglot Detection & Isolated CDR Engine
 
 `Polyguard` is a high-performance security engine and CLI tool that strictly parses binary file structures (**JPEG, PNG, ZIP/ZIP64, PDF**), partitions every byte from `0x00` to `EOF` into a structural `ByteMap`, detects polyglot payloads and sequential Least Significant Bit (LSB) steganography with near-zero false positives, and neutralizes threats via OS-isolated Content Disarm & Reconstruction (CDR).
 
