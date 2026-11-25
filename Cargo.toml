@@ -3,8 +3,8 @@ name = "polyguard"
 version = "0.2.0"
 edition = "2024"
 rust-version = "1.85"
-authors = ["Polyguard Security Engineering"]
-license = "MIT OR Apache-2.0"
+authors = ["Security:Design:Comfort"]
+license = "GNU General Public License v2.0"
 description = "Pure Rust polyglot detection, LSB steganalysis, and isolated CDR engine"
 
 [lib]
